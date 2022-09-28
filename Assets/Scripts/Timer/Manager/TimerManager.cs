@@ -1,37 +1,36 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class TimerManager : MonoBehaviour
 {
     public static TimerManager Instance;
-
-    public delegate void OnTimerEnded();
-    public event OnTimerEnded OnTimerEndedInfo;
         
 
     [Header("Dependencies")]
     [SerializeField] private TMP_Text timeCounter;
-    //[SerializeField] private GameObject timerGameObject;
-    //[SerializeField] private GameObject timesUpGameObject;
 
-    
-    [Header("Testing Zone")] 
-    [SerializeField] private UnityEvent OnTimerEndedEvent;
+    [Header("Timer Settings")]
     [SerializeField] private bool timerGoing;
-    //[SerializeField] private bool startTimer;
-    //[SerializeField] private bool timerEnded;
     [SerializeField] [Tooltip("Amount of time to count down")] [Range(0f,100f)] 
     private float timerTime;
     [SerializeField] private float elapsedTime;
+    [Header("Timer text color settings")]
+    [SerializeField] private Color firstColor;
+    [SerializeField] private Color secondColor;
+    [SerializeField] [Tooltip("Amount of time until colors start flashing")] [Range(0f,30f)] 
+    private float warningColorsOnSecond;
+    [SerializeField] [Range(0f, 5f)] 
+    private float lerpColorsSpeed;
     
+    [Header("Event subscribers")][Tooltip("Add functions that will be called when timer reaches 0")] 
+    [SerializeField] private UnityEvent OnTimerEndedEvent;
+    
+    //inner variables
     private TimeSpan _timePlaying;
     
-
     private void Awake()
     {
         if (Instance == null)
@@ -40,9 +39,8 @@ public class TimerManager : MonoBehaviour
             Destroy(gameObject);
     }
     
-    void Start()
+    private void Start()
     {
-
         timeCounter.text = "Time: 00:00:00";
         timerGoing = false;
         BeginTimer();
@@ -51,18 +49,17 @@ public class TimerManager : MonoBehaviour
     public void BeginTimer()
     {
         timerGoing = true;
-        elapsedTime = timerTime;//0f
-
+        elapsedTime = timerTime;
         StartCoroutine(UpdateTimer());
     }
 
-    public void EndTimer()
+    private void EndTimer()
     {
         timerGoing = false;
         elapsedTime = 0f;
         timeCounter.text = "Time: 00:00:00";
-        Debug.Log("Called all subscribed methods");
-        OnTimerEndedInfo?.Invoke();
+        timeCounter.color = firstColor;
+        OnTimerEndedEvent?.Invoke();
     }
     private IEnumerator UpdateTimer()
     {
@@ -72,6 +69,9 @@ public class TimerManager : MonoBehaviour
             _timePlaying = TimeSpan.FromSeconds(elapsedTime);
             string timePlayingStr = "Time: " + _timePlaying.ToString("mm':'ss':'ff");
             timeCounter.text = timePlayingStr;
+
+            if (elapsedTime <= warningColorsOnSecond)
+                timeCounter.color = LerpColors();
             
             if (elapsedTime <=0)
                 EndTimer();
@@ -80,6 +80,13 @@ public class TimerManager : MonoBehaviour
         }
         
     }
+
+    private Color LerpColors()
+    {
+        return Color.Lerp(firstColor, secondColor, Mathf.Sin(Time.time* lerpColorsSpeed) );
+    }
+    
+    
 }
 
 

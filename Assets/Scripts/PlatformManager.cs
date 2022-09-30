@@ -6,7 +6,7 @@ public class PlatformManager : MonoBehaviour
 {
     private PlayerInputActions playerInputActions;
     private List<GameObject> RedPlatforms;
-    public List<GameObject> BluePlatforms;
+    private List<GameObject> BluePlatforms;
     public  bool isRedOn=true;
     // Start is called before the first frame update
     void Start()

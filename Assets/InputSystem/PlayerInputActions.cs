@@ -44,6 +44,24 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RedPlatformToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""5420695a-ed6d-4a57-8b84-1004bfb66f93"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BluePlatformToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""9b1c77fa-b036-41b7-831c-09398cea0525"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -154,6 +172,28 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2be847f7-1640-40c2-a7bb-806ebfb1958d"",
+                    ""path"": ""<Keyboard>/slash"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RedPlatformToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56712715-490e-497f-9e56-c9d2cc27a927"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""BluePlatformToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -743,6 +783,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_RedPlatformToggle = m_Player.FindAction("RedPlatformToggle", throwIfNotFound: true);
+        m_Player_BluePlatformToggle = m_Player.FindAction("BluePlatformToggle", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -816,12 +858,16 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_RedPlatformToggle;
+    private readonly InputAction m_Player_BluePlatformToggle;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @RedPlatformToggle => m_Wrapper.m_Player_RedPlatformToggle;
+        public InputAction @BluePlatformToggle => m_Wrapper.m_Player_BluePlatformToggle;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -837,6 +883,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @RedPlatformToggle.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRedPlatformToggle;
+                @RedPlatformToggle.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRedPlatformToggle;
+                @RedPlatformToggle.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRedPlatformToggle;
+                @BluePlatformToggle.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBluePlatformToggle;
+                @BluePlatformToggle.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBluePlatformToggle;
+                @BluePlatformToggle.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBluePlatformToggle;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -847,6 +899,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @RedPlatformToggle.started += instance.OnRedPlatformToggle;
+                @RedPlatformToggle.performed += instance.OnRedPlatformToggle;
+                @RedPlatformToggle.canceled += instance.OnRedPlatformToggle;
+                @BluePlatformToggle.started += instance.OnBluePlatformToggle;
+                @BluePlatformToggle.performed += instance.OnBluePlatformToggle;
+                @BluePlatformToggle.canceled += instance.OnBluePlatformToggle;
             }
         }
     }
@@ -1005,6 +1063,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnRedPlatformToggle(InputAction.CallbackContext context);
+        void OnBluePlatformToggle(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

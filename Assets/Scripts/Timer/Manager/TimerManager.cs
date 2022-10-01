@@ -17,13 +17,20 @@ public class TimerManager : MonoBehaviour
     [SerializeField] [Tooltip("Amount of time to count down")] [Range(0f,100f)] 
     private float timerTime;
     [SerializeField] private float elapsedTime;
+    
     [Header("Timer text color settings")]
     [SerializeField] private Color firstColor;
     [SerializeField] private Color secondColor;
-    [SerializeField] [Tooltip("Amount of time until colors start flashing")] [Range(0f,30f)] 
+    [SerializeField] [Tooltip("Amount of time until colors start flashing")] [Range(0f,100f)] 
     private float warningColorsOnSecond;
-    [SerializeField] [Range(0f, 5f)] 
+    [SerializeField] [Range(0f, 20f)] 
     private float lerpColorsSpeed;
+    
+    [Header("Timer text font settings")]
+    [SerializeField] private float firstFontSize;
+    [SerializeField] private float secondFontSize;
+    [SerializeField] [Range(0f, 20f)] 
+    private float lerpFontSizeSpeed;
     
     [Header("Event subscribers")][Tooltip("Add functions that will be called when timer reaches 0")] 
     [SerializeField] private UnityEvent OnTimerEndedEvent;
@@ -41,7 +48,7 @@ public class TimerManager : MonoBehaviour
     
     private void Start()
     {
-        timeCounter.text = "Time: 00:00:00";
+        timeCounter.text = "00:00";
         timerGoing = false;
         BeginTimer();
     }
@@ -57,7 +64,7 @@ public class TimerManager : MonoBehaviour
     {
         timerGoing = false;
         elapsedTime = 0f;
-        timeCounter.text = "Time: 00:00:00";
+        timeCounter.text = "00:00";
         timeCounter.color = firstColor;
         OnTimerEndedEvent?.Invoke();
     }
@@ -67,11 +74,8 @@ public class TimerManager : MonoBehaviour
         {
             elapsedTime -= Time.deltaTime;
             _timePlaying = TimeSpan.FromSeconds(elapsedTime);
-            string timePlayingStr = "Time: " + _timePlaying.ToString("mm':'ss':'ff");
+            string timePlayingStr =  _timePlaying.ToString("mm':'ss");
             timeCounter.text = timePlayingStr;
-
-            if (elapsedTime <= warningColorsOnSecond)
-                timeCounter.color = LerpColors();
             
             if (elapsedTime <=0)
                 EndTimer();
@@ -81,12 +85,24 @@ public class TimerManager : MonoBehaviour
         
     }
 
-    private Color LerpColors()
+    private void LerpColors()
     {
-        return Color.Lerp(firstColor, secondColor, Mathf.Sin(Time.time* lerpColorsSpeed) );
+        timeCounter.color = Color.Lerp(firstColor, secondColor,Mathf.Sin(Time.time* lerpColorsSpeed) );
     }
-    
-    
+
+    private void LerpSize()
+    {
+        timeCounter.fontSize = Mathf.Lerp(firstFontSize, secondFontSize, Mathf.Sin(Time.time * lerpFontSizeSpeed));
+    }
+
+    private void Update()
+    {
+        if (elapsedTime <= warningColorsOnSecond && timerGoing)
+        {
+             LerpColors();
+             LerpSize();
+        }
+    }
 }
 
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Sound;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -37,6 +38,7 @@ public class TimerManager : MonoBehaviour
     
     //inner variables
     private TimeSpan _timePlaying;
+    private bool _warningTimer;
     
     private void Awake()
     {
@@ -50,6 +52,7 @@ public class TimerManager : MonoBehaviour
     {
         timeCounter.text = "00:00";
         timerGoing = false;
+        _warningTimer = true;
         BeginTimer();
     }
 
@@ -66,7 +69,11 @@ public class TimerManager : MonoBehaviour
         elapsedTime = 0f;
         timeCounter.text = "00:00";
         timeCounter.color = firstColor;
+        SoundManager.Instance.PauseSound("ClockTickSound");
+        SoundManager.Instance.PauseSound("Level1Music");
+        SoundManager.Instance.Play("TimerSound");
         OnTimerEndedEvent?.Invoke();
+        MenuManager.Instance.OpenMenu("LostMenu");
     }
     private IEnumerator UpdateTimer()
     {
@@ -95,12 +102,18 @@ public class TimerManager : MonoBehaviour
         timeCounter.fontSize = Mathf.Lerp(firstFontSize, secondFontSize, Mathf.Sin(Time.time * lerpFontSizeSpeed));
     }
 
+    
     private void Update()
     {
         if (elapsedTime <= warningColorsOnSecond && timerGoing)
         {
              LerpColors();
              LerpSize();
+             if (_warningTimer)
+             {
+                 _warningTimer = false;
+                 SoundManager.Instance.Play("ClockTickSound");
+             }
         }
     }
 }

@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CameraTestingScene.unity
     guid: fcd525519b2195840be9ab329b5c47cb
+  - enabled: 1
+    path: Assets/Scenes/CarterTesting.unity
+    guid: e29fdc96ac44f49458fee408ad9ee8c6
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: cca113469190ec64589925b644efb0c2
   m_configObjects: {}

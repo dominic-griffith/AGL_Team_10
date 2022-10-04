@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sound;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlatformManager : MonoBehaviour
@@ -26,10 +27,17 @@ public class PlatformManager : MonoBehaviour
     }
     private void GetInput()
     {
-        if (playerInputActions.Player.RedPlatformToggle.IsPressed()&&!isRedOn)
+        if (playerInputActions.Player.RedPlatformToggle.IsPressed() && !isRedOn)
+        {
+            SoundManager.Instance.Play("PlatformOnSound");
             TogglePlatforms();
+        }
+
         if (playerInputActions.Player.BluePlatformToggle.IsPressed() && isRedOn)
+        {
+            SoundManager.Instance.Play("PlatformOnSound");
             TogglePlatforms() ;
+        }
     }
     private void TogglePlatforms()
     {

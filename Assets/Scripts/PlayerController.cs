@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private PlayerColor playerColor;
     [SerializeField] private float speed = 20f;
     [SerializeField] private float jumpVelocity = 15f;
     [SerializeField] private Transform floor;
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private PlayerInputActions playerInputActions;
+    private InputActionMap actionMap;
     private Vector2 moveInput;
     private bool jump = false;
     private bool isGrounded;
@@ -21,8 +23,19 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.Enable(); //context for input can be either (1) Started, (2) Performed, (3) Canceled
+        playerInputActions = new PlayerInputActions(); //context for input can be either (1) Started, (2) Performed, (3) Canceled
+
+        if (playerColor.Equals(PlayerColor.Blue))
+        {
+            playerInputActions.BluePlayer.Enable();
+            actionMap = playerInputActions.BluePlayer.Get();
+        }
+        else
+        {
+            playerInputActions.RedPlayer.Enable();
+            actionMap = playerInputActions.RedPlayer.Get();
+        }
+
     }
 
     private void Update()
@@ -38,8 +51,8 @@ public class PlayerController : MonoBehaviour
 
     private void GetInput()
     {
-        moveInput = playerInputActions.Player.Move.ReadValue<Vector2>();
-        if (playerInputActions.Player.Jump.IsPressed())
+        moveInput = actionMap.FindAction("Move").ReadValue<Vector2>();
+        if (moveInput.y > 0)
             jump = true;
         else
             jump = false;
@@ -60,4 +73,10 @@ public class PlayerController : MonoBehaviour
         }
             
     }
+}
+
+public enum PlayerColor
+{
+    Blue,
+    Red
 }

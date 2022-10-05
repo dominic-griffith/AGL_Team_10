@@ -5,6 +5,7 @@ using NaughtyAttributes;
 using Sound;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -19,6 +20,10 @@ namespace Gameplay
         [SerializeField]
         private bool paused;
         
+        [Header("Event subscribers")][Tooltip("Add functions that will be called when timer reaches 0")] 
+        [SerializeField] private UnityEvent OnGamePauseEvent;
+        [SerializeField] private UnityEvent OnGameUnPauseEvent;
+        
         
         //inner methods
         private PlayerInputActions _playerInputActions;
@@ -30,7 +35,6 @@ namespace Gameplay
             paused = false;
             
             _playerInputActions = new PlayerInputActions();
-            _playerInputActions.Player.Enable();
             
             _playerInputActions.FindAction("Pause").started += OnPausePressed;
         }
@@ -82,6 +86,7 @@ namespace Gameplay
                 }
                 else
                 {
+                    MenuManager.Instance.OpenMenu("PauseMenu");
                     OnUnlockCursor();
                 }
                 paused = false;
@@ -90,6 +95,7 @@ namespace Gameplay
         
         public void OnLockCursor()
         {
+            OnGameUnPauseEvent?.Invoke();
             MenuManager.Instance.CloseAllOpenMenus();
             //Time.timeScale = 1f;
             Cursor.visible = false;
@@ -98,7 +104,7 @@ namespace Gameplay
 
         public void OnUnlockCursor()
         {
-            MenuManager.Instance.OpenMenu("PauseMenu");
+            OnGamePauseEvent?.Invoke();
             //Time.timeScale = 0f;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -112,6 +118,16 @@ namespace Gameplay
         public void SetPausedDead(bool isPlayerDead)
         {
             _isDead = isPlayerDead;
+        }
+
+        private void OnEnable()
+        {
+            _playerInputActions.Player.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _playerInputActions.Player.Disable();
         }
     }
     

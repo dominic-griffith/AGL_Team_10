@@ -18,6 +18,12 @@ public class PlayerController : MonoBehaviour
     private bool jump = false;
     private bool isGrounded;
     private float groundCheckRadius = 0.2f;
+    private bool _isInstanceNullPlatformManager;
+
+    private void Start()
+    {
+        _isInstanceNullPlatformManager = PlatformManager.Instance == null;
+    }
 
     private void Awake()
     {
@@ -58,6 +64,7 @@ public class PlayerController : MonoBehaviour
         else
             jump = false;
 
+        if (_isInstanceNullPlatformManager) return; //in case we using TilePlatformManager
         //Togggle Platforms Input
         if(actionMap.FindAction("PlatformToggle").IsPressed())
         {
@@ -86,6 +93,32 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
         }
             
+    }
+    
+    //function that enables movement when called for the according color/player
+    public void EnablePlayerMovement()
+    {
+        if (playerColor.Equals(PlayerColor.Blue))
+        {
+            playerInputActions.BluePlayer.Enable();
+        }
+        else
+        {
+            playerInputActions.RedPlayer.Enable();
+        }
+    }
+    
+    //function that disables movement when called for the according color/player
+    public void DisablePlayerMovement()
+    {
+        if (playerColor.Equals(PlayerColor.Blue))
+        {
+            playerInputActions.BluePlayer.Disable();
+        }
+        else
+        {
+            playerInputActions.RedPlayer.Disable();
+        }
     }
 }
 

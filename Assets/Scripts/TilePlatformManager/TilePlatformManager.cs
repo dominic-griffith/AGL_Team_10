@@ -1,10 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using Sound;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TilePlatformManager : MonoBehaviour
 {
+    public static TilePlatformManager Instance;
+    
     [Header("Dependencies")] 
     [SerializeField]
     private GameObject RedTileMap;
@@ -16,11 +18,27 @@ public class TilePlatformManager : MonoBehaviour
     private bool isRedOn=true;
     
     //inner methods
-    private PlayerInputActions playerInputActions;
+    private PlayerInputActions _playerInputActions;
+
+    private void Awake()
+    {
+        if(Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+        //INPUT STUFF   
+        _playerInputActions = new PlayerInputActions();
+        _playerInputActions.RedPlayer.Get().FindAction("PlatformToggle").started += RedPressedToggle;
+        _playerInputActions.BluePlayer.Get().FindAction("PlatformToggle").started += BluePressedToggle;
+    }
+
     private void Start()
     {
-        playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.Enable();
+        
         if (isRedOn)
         {
             TurnOffPlatforms(BlueTileMap);
@@ -30,22 +48,25 @@ public class TilePlatformManager : MonoBehaviour
             TurnOffPlatforms(RedTileMap);
         }
     }
-    private void GetInput()
+    
+    private void BluePressedToggle(InputAction.CallbackContext context)
     {
-        if (playerInputActions.Player.RedPlatformToggle.IsPressed() && !isRedOn)
+        if(isRedOn)
         {
-            SoundManager.Instance.Play("PlatformOnSound");
             TogglePlatforms();
         }
-
-        if (playerInputActions.Player.BluePlatformToggle.IsPressed() && isRedOn)
+    }
+    private void RedPressedToggle(InputAction.CallbackContext context)
+    {
+        if (!isRedOn)
         {
-            SoundManager.Instance.Play("PlatformOnSound");
-            TogglePlatforms() ;
+            TogglePlatforms();
         }
     }
+    
     private void TogglePlatforms()
     {
+        SoundManager.Instance.Play("PlatformOnSound");
         isRedOn = !isRedOn;
         if (isRedOn)
         {
@@ -66,9 +87,26 @@ public class TilePlatformManager : MonoBehaviour
     {
         tileMap.SetActive(true);
     }
-    
-    private void Update()
+
+    private void OnEnable()
     {
-        GetInput();
+        EnableToggle();
+    }
+
+    private void OnDisable()
+    {
+        DisableToggle();
+    }
+
+    public void DisableToggle()
+    {
+        _playerInputActions.RedPlayer.Disable();
+        _playerInputActions.BluePlayer.Disable();
+    }
+    
+    public void EnableToggle()
+    {
+        _playerInputActions.RedPlayer.Enable();
+        _playerInputActions.BluePlayer.Enable();
     }
 }

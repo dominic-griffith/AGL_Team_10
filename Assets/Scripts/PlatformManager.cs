@@ -5,16 +5,28 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlatformManager : MonoBehaviour
 {
-    private PlayerInputActions playerInputActions;
     private List<GameObject> RedPlatforms;
     private List<GameObject> BluePlatforms;
     public  bool isRedOn=true;
+
+    public static PlatformManager Instance;
+
+    private void Awake()
+    {
+        if(Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.Enable();
-        RedPlatforms=new List<GameObject>(GameObject.FindGameObjectsWithTag("Red"));
+        RedPlatforms =new List<GameObject>(GameObject.FindGameObjectsWithTag("Red"));
         BluePlatforms = new List<GameObject>(GameObject.FindGameObjectsWithTag("Blue"));
         if (isRedOn)
         {
@@ -25,22 +37,24 @@ public class PlatformManager : MonoBehaviour
             TurnOffPlatforms(RedPlatforms);
         }
     }
-    private void GetInput()
+    public void BluePressedToggle()
     {
-        if (playerInputActions.Player.RedPlatformToggle.IsPressed() && !isRedOn)
+        if(isRedOn)
         {
-            SoundManager.Instance.Play("PlatformOnSound");
             TogglePlatforms();
         }
-
-        if (playerInputActions.Player.BluePlatformToggle.IsPressed() && isRedOn)
+    }
+    public void RedPressedToggle()
+    {
+        if (!isRedOn)
         {
-            SoundManager.Instance.Play("PlatformOnSound");
-            TogglePlatforms() ;
+            TogglePlatforms();
         }
     }
+
     private void TogglePlatforms()
     {
+        SoundManager.Instance.Play("PlatformOnSound");
         isRedOn = !isRedOn;
         if (isRedOn)
         {
@@ -66,10 +80,5 @@ public class PlatformManager : MonoBehaviour
         {
             platform.SetActive(true);
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        GetInput();
     }
 }

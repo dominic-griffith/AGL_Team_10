@@ -51,11 +51,25 @@ public class PlayerController : MonoBehaviour
 
     private void GetInput()
     {
+        //Movement Input
         moveInput = actionMap.FindAction("Move").ReadValue<Vector2>();
         if (moveInput.y > 0)
             jump = true;
         else
             jump = false;
+
+        //Togggle Platforms Input
+        if(actionMap.FindAction("PlatformToggle").IsPressed())
+        {
+            if(playerColor.Equals(PlayerColor.Blue))
+            {
+                PlatformManager.Instance.BluePressedToggle();
+            }
+            else
+            {
+                PlatformManager.Instance.RedPressedToggle();
+            }
+        }
     }
 
     private void GroundCheck()

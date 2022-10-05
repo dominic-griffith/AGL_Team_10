@@ -1,11 +1,18 @@
 using UnityEngine;
 using System;
+using NaughtyAttributes;
+using UnityEngine.SceneManagement;
 
 namespace Sound
 {
     public class SoundManager : MonoBehaviour
     {
         public static SoundManager Instance;
+        [Header("Level Music")] 
+        [SerializeField, Scene]
+        private string menuSceneThemeSong;
+        [SerializeField, Scene]
+        private string gameplaySceneThemeSong;
         
         [SerializeField]
         private Sound[] sounds;
@@ -35,15 +42,6 @@ namespace Sound
                 s.source.loop = s.loop;
             }
         }
-        private void Start()
-        {
-            PlayMusic();
-        }
-
-        private void PlayMusic()
-        {
-            Play("Level1Music");
-        }
 
         public void Play(string name)
         {
@@ -57,8 +55,8 @@ namespace Sound
     
             s.source.Play();
         }
-    
-        public void PauseSound(string name)
+        
+        public void StopSound(string name)
         {
             Sound s = Array.Find(sounds, sound => sound.name == name);
     
@@ -67,7 +65,80 @@ namespace Sound
                 Debug.LogWarning("sound not found check spelling for: " + name);
                 return;
             }
-            s.source.Pause();
+            s.source.Stop();
+        }
+        
+        public void StopAllSound()
+        {
+            foreach (Sound s in sounds)
+            {
+                if (s == null)
+                {
+                    Debug.LogWarning("sound not found check spelling for: " + name);
+                    return; 
+                }
+                s.source.Stop();
+            }
+        }
+        
+        public void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        public void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+        {
+            StopAllSound();
+            if (scene.name == menuSceneThemeSong)
+            {
+                Play("MenuMusic");
+            }
+            else if (scene.name == gameplaySceneThemeSong)
+            {
+                Play("Level1Music");
+            }
+        }
+        
+        public void ChangeVolumeAllOfType(float volumeAmount, TypeOfAudio audioType)
+        {
+            foreach (Sound s in sounds)
+            {
+                if (s == null)
+                {
+                    Debug.LogWarning("sound not found check spelling for: " + name);
+                    return; 
+                }
+                
+                if(s.audioType == audioType)
+                    s.source.volume = volumeAmount;
+            }
+        }
+
+        public float GetBackgroundVolumeLevel()
+        {
+            Sound s = Array.Find(sounds, sound => sound.audioType == TypeOfAudio.Background);
+            if (s == null)
+            {
+                Debug.LogWarning("sound not found check spelling for: " + name);
+                return 0;
+            }
+            return s.source.volume;
+        }
+        
+        public float GetSoundEffectsVolumeLevel()
+        {
+            Sound s = Array.Find(sounds, sound => sound.audioType == TypeOfAudio.SoundEffects);
+            if (s == null)
+            {
+                Debug.LogWarning("sound not found check spelling for: " + name);
+                return 0;
+            }
+            return s.source.volume;
         }
     }
 }

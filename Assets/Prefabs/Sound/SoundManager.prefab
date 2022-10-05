@@ -44,52 +44,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a9a7f81795788428929093e1a131e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuSceneThemeSong: MainMenu
+  gameplaySceneThemeSong: TileMapTesting
   sounds:
-  - name: Level1Music
-    clip: {fileID: 8300000, guid: a5ed406c7d2a74849be043f9e3c64c8c, type: 3}
-    volume: 0.5
+  - name: MenuMusic
+    clip: {fileID: 8300000, guid: b659b07415fe70245afd4b25f0be8c99, type: 3}
+    volume: 1
     pitch: 1
     loop: 1
+    audioType: 1
+    source: {fileID: 0}
+  - name: Level1Music
+    clip: {fileID: 8300000, guid: a5ed406c7d2a74849be043f9e3c64c8c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    audioType: 1
     source: {fileID: 0}
   - name: ObstacleDeathSound
     clip: {fileID: 8300000, guid: 5de523fa5e2d18c49b083696b2cf3a28, type: 3}
-    volume: 0.8
+    volume: 1
     pitch: 1
     loop: 0
+    audioType: 0
     source: {fileID: 0}
   - name: FallingDeathSound
     clip: {fileID: 8300000, guid: 2b0ce934028778446843534a8b3a631f, type: 3}
-    volume: 0.8
+    volume: 1
     pitch: 1
     loop: 0
+    audioType: 0
     source: {fileID: 0}
   - name: ElectricDeathSound
     clip: {fileID: 8300000, guid: 2b0ce934028778446843534a8b3a631f, type: 3}
-    volume: 0.8
+    volume: 1
     pitch: 1
     loop: 0
+    audioType: 0
     source: {fileID: 0}
   - name: PlatformOnSound
     clip: {fileID: 8300000, guid: 6645481bb7b7bc8469c15194e4a60223, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    audioType: 0
     source: {fileID: 0}
   - name: TimerSound
     clip: {fileID: 8300000, guid: 61d22fba19792cd48ae8c82451d775d9, type: 3}
-    volume: 0.8
+    volume: 1
     pitch: 1
     loop: 0
+    audioType: 0
     source: {fileID: 0}
   - name: WinSound
     clip: {fileID: 8300000, guid: 0e2a9f5c4039250478dc5175aa158972, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    audioType: 0
     source: {fileID: 0}
   - name: ClockTickSound
     clip: {fileID: 8300000, guid: f2b7e5c34162d004caeb010f47d6b024, type: 3}
     volume: 1
     pitch: 1
     loop: 1
+    audioType: 0
     source: {fileID: 0}

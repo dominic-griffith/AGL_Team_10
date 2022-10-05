@@ -20,6 +20,7 @@ public class KillOnTouch : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
+            SoundManager.Instance.Play("ObstacleDeathSound");
             DeathManager.restartLevel();
         }
     }

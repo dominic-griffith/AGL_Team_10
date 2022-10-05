@@ -69,8 +69,8 @@ public class TimerManager : MonoBehaviour
         elapsedTime = 0f;
         timeCounter.text = "00:00";
         timeCounter.color = firstColor;
-        SoundManager.Instance.PauseSound("ClockTickSound");
-        SoundManager.Instance.PauseSound("Level1Music");
+        SoundManager.Instance.StopSound("ClockTickSound");
+        SoundManager.Instance.StopSound("Level1Music");
         SoundManager.Instance.Play("TimerSound");
         OnTimerEndedEvent?.Invoke();
         MenuManager.Instance.OpenMenu("LostMenu");

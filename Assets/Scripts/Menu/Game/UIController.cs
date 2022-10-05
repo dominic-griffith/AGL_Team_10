@@ -8,11 +8,18 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Gameplay
 {
     public class UIController : MonoBehaviour
     {
+        [Header("Dependencies")]
+        [SerializeField]
+        private Slider backgroundVolumeSlider;
+        [SerializeField]
+        private Slider soundEffectsVolumeSlider;
+        
         [Header("Menu Settings")] [SerializeField, Scene]
         private string sceneToLoad;
         
@@ -37,6 +44,12 @@ namespace Gameplay
             _playerInputActions = new PlayerInputActions();
             
             _playerInputActions.FindAction("Pause").started += OnPausePressed;
+        }
+        
+        private void Start()
+        {
+            backgroundVolumeSlider.value = SoundManager.Instance.GetBackgroundVolumeLevel();
+            soundEffectsVolumeSlider.value = SoundManager.Instance.GetSoundEffectsVolumeLevel();
         }
 
         public void Resume()
@@ -123,6 +136,16 @@ namespace Gameplay
         private void OnDisable()
         {
             _playerInputActions.Player.Disable();
+        }
+        
+        public void OnChangedVolumeBackground()
+        {
+            SoundManager.Instance.ChangeVolumeAllOfType(backgroundVolumeSlider.value, TypeOfAudio.Background);
+        }
+        
+        public void OnChangedVolumeSoundEffects()
+        {
+            SoundManager.Instance.ChangeVolumeAllOfType(soundEffectsVolumeSlider.value, TypeOfAudio.SoundEffects);
         }
     }
     

@@ -16,7 +16,14 @@ namespace Sound
 
         public bool loop;
 
+        public TypeOfAudio audioType;
+
         [HideInInspector]
         public AudioSource source;
+    }
+    public enum TypeOfAudio
+    {
+        SoundEffects,
+        Background
     }
 }

@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f31bd66085f5733469762841ad4b276c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: CameraTestingScene
+  sceneToLoad: TileMapTesting
 --- !u!4 &127019725
 Transform:
   m_ObjectHideFlags: 0

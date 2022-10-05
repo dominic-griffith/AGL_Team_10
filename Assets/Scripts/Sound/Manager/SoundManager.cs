@@ -13,7 +13,10 @@ namespace Sound
         private void Awake()
         {
             if (Instance == null)
+            {
                 Instance = this;
+                DontDestroyOnLoad(this);
+            }
             else
             {
                 Destroy(gameObject);
@@ -31,6 +34,15 @@ namespace Sound
                 s.source.pitch = s.pitch;
                 s.source.loop = s.loop;
             }
+        }
+        private void Start()
+        {
+            PlayMusic();
+        }
+
+        private void PlayMusic()
+        {
+            Play("Level1Music");
         }
 
         public void Play(string name)

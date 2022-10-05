@@ -44,15 +44,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Pause"",
-                    ""type"": ""Button"",
-                    ""id"": ""dab559bb-c412-415d-881c-49c86f967720"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -121,17 +112,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""95713c38-f2f4-4e69-9371-5b5b8009d8ae"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -748,42 +728,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
             ""id"": ""624ae356-5ce4-418e-bb7a-da7d8f75497e"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
-                    ""type"": ""Value"",
-                    ""id"": ""697fa378-ee76-4514-8f00-b06188d5875b"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Jump"",
-                    ""type"": ""Button"",
-                    ""id"": ""4973adf2-61f6-45e6-bfea-43f49432516d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RedPlatformToggle"",
-                    ""type"": ""Button"",
-                    ""id"": ""837766db-cb67-41fb-9201-07ea885c16a2"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""BluePlatformToggle"",
-                    ""type"": ""Button"",
-                    ""id"": ""b17b3c8a-0717-4ac6-8315-2d246c8865b6"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""5c27a6a3-37b9-4e5e-8383-655459e9db1e"",
@@ -794,138 +738,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": ""WASD"",
-                    ""id"": ""d7c95ecb-1a36-4f31-85e0-892c488e1480"",
-                    ""path"": ""Dpad"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""1a38107d-0711-454c-b40c-d8322ebfd33e"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""0102c63a-e70d-45bf-a0e7-f76e48669987"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""f22f90e7-5182-4f74-9d95-8ba70d04cb2d"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""8700c2bb-e145-4e25-823c-23574558037c"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""4341c1c4-6687-4301-8448-b32592ca2c08"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""d17dcf2e-c71a-4a37-a574-606bd0342835"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""91da4a71-23e1-4140-8c52-4c23bf98546e"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""c60a5aa1-0be2-42ab-937f-4d225fdd5960"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""81edeac2-11ee-4e45-9a2c-e046365a4d9d"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c8f14e88-9078-466a-9bc3-83f2ebce6fb4"",
-                    ""path"": ""<Keyboard>/slash"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RedPlatformToggle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a3111a74-2c99-4828-975f-5b8df34672e1"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""BluePlatformToggle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""6d85c31e-3125-4928-a2a1-34333aca757c"",
@@ -1007,7 +819,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_BluePlayer = asset.FindActionMap("BluePlayer", throwIfNotFound: true);
         m_BluePlayer_Move = m_BluePlayer.FindAction("Move", throwIfNotFound: true);
         m_BluePlayer_PlatformToggle = m_BluePlayer.FindAction("PlatformToggle", throwIfNotFound: true);
-        m_BluePlayer_Pause = m_BluePlayer.FindAction("Pause", throwIfNotFound: true);
         // RedPlayer
         m_RedPlayer = asset.FindActionMap("RedPlayer", throwIfNotFound: true);
         m_RedPlayer_Move = m_RedPlayer.FindAction("Move", throwIfNotFound: true);
@@ -1026,10 +837,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_RedPlatformToggle = m_Player.FindAction("RedPlatformToggle", throwIfNotFound: true);
-        m_Player_BluePlatformToggle = m_Player.FindAction("BluePlatformToggle", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
     }
 
@@ -1092,14 +899,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private IBluePlayerActions m_BluePlayerActionsCallbackInterface;
     private readonly InputAction m_BluePlayer_Move;
     private readonly InputAction m_BluePlayer_PlatformToggle;
-    private readonly InputAction m_BluePlayer_Pause;
     public struct BluePlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public BluePlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_BluePlayer_Move;
         public InputAction @PlatformToggle => m_Wrapper.m_BluePlayer_PlatformToggle;
-        public InputAction @Pause => m_Wrapper.m_BluePlayer_Pause;
         public InputActionMap Get() { return m_Wrapper.m_BluePlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1115,9 +920,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @PlatformToggle.started -= m_Wrapper.m_BluePlayerActionsCallbackInterface.OnPlatformToggle;
                 @PlatformToggle.performed -= m_Wrapper.m_BluePlayerActionsCallbackInterface.OnPlatformToggle;
                 @PlatformToggle.canceled -= m_Wrapper.m_BluePlayerActionsCallbackInterface.OnPlatformToggle;
-                @Pause.started -= m_Wrapper.m_BluePlayerActionsCallbackInterface.OnPause;
-                @Pause.performed -= m_Wrapper.m_BluePlayerActionsCallbackInterface.OnPause;
-                @Pause.canceled -= m_Wrapper.m_BluePlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_BluePlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1128,9 +930,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @PlatformToggle.started += instance.OnPlatformToggle;
                 @PlatformToggle.performed += instance.OnPlatformToggle;
                 @PlatformToggle.canceled += instance.OnPlatformToggle;
-                @Pause.started += instance.OnPause;
-                @Pause.performed += instance.OnPause;
-                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -1285,19 +1084,11 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_RedPlatformToggle;
-    private readonly InputAction m_Player_BluePlatformToggle;
     private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @RedPlatformToggle => m_Wrapper.m_Player_RedPlatformToggle;
-        public InputAction @BluePlatformToggle => m_Wrapper.m_Player_BluePlatformToggle;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1308,18 +1099,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @RedPlatformToggle.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRedPlatformToggle;
-                @RedPlatformToggle.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRedPlatformToggle;
-                @RedPlatformToggle.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRedPlatformToggle;
-                @BluePlatformToggle.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBluePlatformToggle;
-                @BluePlatformToggle.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBluePlatformToggle;
-                @BluePlatformToggle.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBluePlatformToggle;
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
@@ -1327,18 +1106,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
-                @RedPlatformToggle.started += instance.OnRedPlatformToggle;
-                @RedPlatformToggle.performed += instance.OnRedPlatformToggle;
-                @RedPlatformToggle.canceled += instance.OnRedPlatformToggle;
-                @BluePlatformToggle.started += instance.OnBluePlatformToggle;
-                @BluePlatformToggle.performed += instance.OnBluePlatformToggle;
-                @BluePlatformToggle.canceled += instance.OnBluePlatformToggle;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
@@ -1395,7 +1162,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnPlatformToggle(InputAction.CallbackContext context);
-        void OnPause(InputAction.CallbackContext context);
     }
     public interface IRedPlayerActions
     {
@@ -1417,10 +1183,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     }
     public interface IPlayerActions
     {
-        void OnMove(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
-        void OnRedPlatformToggle(InputAction.CallbackContext context);
-        void OnBluePlatformToggle(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
     }
 }

@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: cca113469190ec64589925b644efb0c2
+  - enabled: 1
+    path: Assets/Scenes/TileMapTesting.unity
+    guid: ec2d995e05250f54890004f9bf7cb019
   m_configObjects: {}

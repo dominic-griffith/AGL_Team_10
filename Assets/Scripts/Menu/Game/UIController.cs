@@ -39,11 +39,6 @@ namespace Gameplay
             _playerInputActions.FindAction("Pause").started += OnPausePressed;
         }
 
-        private void Start()
-        {
-            SoundManager.Instance.Play("Level1Music");
-        }
-
         public void Resume()
         {
             OnLockCursor();

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuSceneThemeSong: MainMenu
-  gameplaySceneThemeSong: TileMapTesting
+  gameplaySceneThemeSong: Sebastian_Test_2
   sounds:
   - name: MenuMusic
     clip: {fileID: 8300000, guid: b659b07415fe70245afd4b25f0be8c99, type: 3}
@@ -76,7 +76,7 @@ MonoBehaviour:
     audioType: 0
     source: {fileID: 0}
   - name: ElectricDeathSound
-    clip: {fileID: 8300000, guid: 2b0ce934028778446843534a8b3a631f, type: 3}
+    clip: {fileID: 8300000, guid: c38531d9d6c74164d88eeaf8784632d6, type: 3}
     volume: 1
     pitch: 1
     loop: 0

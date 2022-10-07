@@ -116,6 +116,13 @@ public class TimerManager : MonoBehaviour
              }
         }
     }
+
+    public void OnTimerPaused()
+    {
+        SoundManager.Instance.StopSound("ClockTickSound");
+        timerGoing = false;
+        timeCounter.color = firstColor;        
+    }
 }
 
 

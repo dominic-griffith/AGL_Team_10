@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpVelocity = 15f;
     [SerializeField] private Transform floor;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Animator spriteAnimator;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     private Rigidbody2D rb;
     private PlayerInputActions playerInputActions;
@@ -87,7 +89,24 @@ public class PlayerController : MonoBehaviour
     private void MovePlayer()
     {
         rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
-
+        
+        if(moveInput.x>0){
+            if(isGrounded)
+                spriteAnimator.enabled=true;
+            else
+                spriteAnimator.enabled=false;
+            spriteRenderer.flipX=false;
+        }
+        else if(moveInput.x<0){
+            if(isGrounded)
+                spriteAnimator.enabled=true;
+            else
+                spriteAnimator.enabled=false;
+            spriteRenderer.flipX=true;
+        }
+        else{
+            spriteAnimator.enabled=false;
+        }
         if (jump && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);

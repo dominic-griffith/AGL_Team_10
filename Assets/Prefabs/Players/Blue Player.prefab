@@ -77,6 +77,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  spriteAnimator: {fileID: 759224194785657340}
+  spriteRenderer: {fileID: 2619713668275858054}
 --- !u!61 &1061271998443264183
 BoxCollider2D:
   m_ObjectHideFlags: 0

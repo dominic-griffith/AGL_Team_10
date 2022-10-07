@@ -19,6 +19,8 @@ namespace Gameplay
         private Slider backgroundVolumeSlider;
         [SerializeField]
         private Slider soundEffectsVolumeSlider;
+
+        [SerializeField] private WinTileSystem winTileSystemScript;
         
         [Header("Menu Settings")] [SerializeField, Scene]
         private string sceneToLoad;
@@ -146,6 +148,14 @@ namespace Gameplay
         public void OnChangedVolumeSoundEffects()
         {
             SoundManager.Instance.ChangeVolumeAllOfType(soundEffectsVolumeSlider.value, TypeOfAudio.SoundEffects);
+        }
+
+        public void OnPlayerWon()
+        {
+            if (!winTileSystemScript.playerWon) return;
+            
+            SoundManager.Instance.StopAllSound();
+            TimerManager.Instance.OnTimerPaused();
         }
     }
     

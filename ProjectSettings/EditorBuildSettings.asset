@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TileMapTesting.unity
     guid: ec2d995e05250f54890004f9bf7cb019
+  - enabled: 1
+    path: Assets/Scenes/Sebastian_Test_2.unity
+    guid: 97e91508853917f43a8180ca8a16fd8c
   m_configObjects: {}

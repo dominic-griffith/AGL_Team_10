@@ -289,7 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundVolumeSlider: {fileID: 374972261}
   soundEffectsVolumeSlider: {fileID: 740932385}
-  sceneToLoad: TileMapTesting
+  sceneToLoad: Sebastian_Test_2
 --- !u!4 &127019725
 Transform:
   m_ObjectHideFlags: 0
